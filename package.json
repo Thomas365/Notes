@@ -1,0 +1,19 @@
+{
+  "name": "note",
+  "version": "1.0.0",
+  "description": "一些自己写的函数的记录",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomas365/myNote.git"
+  },
+  "author": "fangjund",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomas365/myNote/issues"
+  },
+  "homepage": "https://github.com/tomas365/myNote#readme"
+}
