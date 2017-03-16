@@ -43,7 +43,7 @@
 		  
 		  return dates;		  
 		};
-		var date1=getMyDate("2017-12-01","2017-02-01","year");console.log("输出2016-12-01~2017-02-01之间年份：",date1);
+		var date1=getMyDate("2016-12-01","2017-02-01","year");console.log("输出2016-12-01~2017-02-01之间年份：",date1);
         var date2=getMyDate("2016-12-01","2017-01-01","month");console.log("输出2016-12-01~2017-01-01之间月份：",date2);
         var date3=getMyDate("2016-12-01","2017-01-01","day");console.log("输出2016-12-01~2017-01-01之间日期：",date3);
 		
