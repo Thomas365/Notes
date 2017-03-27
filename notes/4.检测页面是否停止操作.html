@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>检测页面是否过期</title>
+    <style>
+        .tip{
+            display: none;
+            background: red;
+            color:#fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="tip">页面过期，重新加载</div>
+    <div class="content">
+        页面内容
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            var isOverdue=false,
+                lastDate=new Date();
+                
+            function examine(){
+                if(isOverdue){
+                    window.location.reload();
+                }else{
+                    lastDate = new Date();
+                }
+            }
+
+            $(window).on("mousemove",function(){
+                console.log('移动鼠标！')
+                examine();
+            })
+            $(window).keypress(function(){
+                console.log('按下键盘！')
+                examine();
+            })
+            var test=setInterval(function() {
+                console.log("检测页面是否过期："+new Date())
+                if(new Date()-lastDate>10000){
+                    isOverdue=true;
+                    $(".tip").show();
+                    test=window.clearInterval(test);
+                }
+            }, 1000);
+        })
+    </script>
+</body>
+</html>
