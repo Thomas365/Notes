@@ -17,19 +17,21 @@
 <body>
     <div class="tip">页面过期，重新加载</div>
     <div class="content">
-        页面内容
-    </div>
+        请双手离开键盘，鼠标 等待 <span class="second">10</span> 秒!
+    </div>    
     <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(function(){
             var isOverdue=false,
                 lastDate=new Date();
+                var second=10;
                 
             function examine(){
                 if(isOverdue){
                     window.location.reload();
                 }else{
                     lastDate = new Date();
+                    second=10;
                 }
             }
 
@@ -42,11 +44,14 @@
                 examine();
             })
             var test=setInterval(function() {
-                console.log("检测页面是否过期："+new Date())
+                console.log("检测页面是否过期："+new Date())                
+                $(".second").html(second--);
+
                 if(new Date()-lastDate>10000){
                     isOverdue=true;
                     $(".tip").show();
                     test=window.clearInterval(test);
+                    $(".content").html("滑动鼠标或者按下键盘！")
                 }
             }, 1000);
         })
