@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS事件冒泡，事件捕获，事件流</title>
+    <style>
+       #wrap {
+        width: 200px;
+        height: 200px;
+        background: orange;
+      }
+      #outer {
+        position: relative;
+        top: 50px;
+        left: 50px;
+        width: 100px;
+        height: 100px;
+        background: #eeddff;
+      }
+      #inner {
+        position: relative;
+        top: 25px;
+        left:25px;
+        width: 50px;
+        height: 50px;
+        background: #44ddff;
+      }      
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="outer">
+            <div id="inner"></div>
+        </div>
+    </div>
+    <script>
+        //1、当元素注册了事件,此事件的作用范围为：元素自己所占页面空间部分加嵌套元素所占空间范围(若嵌套元素覆盖在容器元素上，则事件的作用范围为容器元素自身所占空间大小)
+        //2、当容器元素及其嵌套元素都在冒泡阶段调用事件处理程序时：事件按事件冒泡的顺序执行事件处理程序,最具体元素先触发事件
+        //3、事件捕获的思想是不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。
+        //4、事件流的三个阶段：事件捕获阶段==>处于目标阶段==>事件冒泡阶段
+        var wrap = document.getElementById('wrap');
+        var outer = document.getElementById('outer');
+        var inner = document.getElementById('inner');
+        //当第三个参数为 false 时，让元素在冒泡阶段调用事件处理程序
+        wrap.addEventListener('click',function(){
+        alert('789');
+        },false);
+        outer.addEventListener('click',function(){
+        alert('456');
+        },false);
+        inner.addEventListener('click',function(){
+        alert('123');
+        },false);
+
+        //当第三个参数为 true 时，让元素在捕获阶段调用事件处理程序
+        wrap.addEventListener('click',function(){
+        alert('wrap');
+        },true);
+        outer.addEventListener('click',function(){
+        alert('outer');
+        },true);
+        inner.addEventListener('click',function(){
+        alert('inner');
+        },true);
+
+        //当容器元素及嵌套元素，即在捕获阶段又在冒泡阶段调用事件处理程序时：
+        //事件按DOM事件流的顺序执行事件处理程序，且当事件处于目标阶段时，事件调用顺序决定于绑定事件的书写顺序，按上面的例子为，先调用冒泡阶段的事件处理程序，再调用捕获阶段的事件处理程序。
+    </script>
+</body>
+</html>

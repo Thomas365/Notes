@@ -38,7 +38,7 @@ var Diaosi={
     "体重":"65kg",
     "年薪":"150k",
     name:"屌丝",
-    rate:0.5,
+    rate:0.2,
     request:function(obj){
         if(Math.random()>(1-this.rate)){
             obj.success();
@@ -52,7 +52,7 @@ var Nasheng={
     "体重":"75kg",
     "年薪":"500k",
     name:"男神",
-    rate:0.5,
+    rate:0.8,
     request:function(obj){               
         if(Math.random()>(1-this.rate)){            
             obj.success();
@@ -114,8 +114,8 @@ function Request(man,womanArr){
     index.catch(function(){console.log("\n",man.name,"注孤生！")});
 }
 
-// Request(Diaosi,["女神1","女神2","女神3","女神4","女神5","女神6","女神7","女神8","女神9",]);
-// Request(Nasheng,["女神1","女神2","女神3","女神4","女神5","女神6","女神7","女神8","女神9",])
+Request(Diaosi,["女神1","女神2","女神3","女神4","女神5","女神6","女神7","女神8","女神9",]);
+Request(Nasheng,["女神1","女神2","女神3","女神4","女神5","女神6","女神7","女神8","女神9",])
 
 
 //例子3：重复执行，直到成功

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试</title>
+</head>
+<body>
+    <p>测试ajax</p>
+    <script src="./notes/23.原生js实现ajax和jsonp.js"></script>
+    <script>
+        // ajax({
+        //     url:'http://127.0.0.1:8080/getdata',
+        //     type:'get',
+        //     data:{a:1,b:2,c:['c','d']},
+        //     dataType:'json',
+        //     timeout:2000,
+        //     success:function(response,xml){
+        //         console.log(response,xml);
+        //     },
+        //     fail:function(status){
+        //         console.log(status)
+        //     }
+        // })
+
+        //Jsonp 请求
+        // jsonp({
+        //     url:'http://localhost:3000/users/test',
+        //     data:{a:1,b:2},
+        //     time:5000,
+        //     timeout:function(){
+        //         console.log('超时')
+        //     },
+        //     success:function(data){
+        //         console.log(data);
+        //     },
+        //     fail:function(result){
+        //         console.log(result.message)
+        //     }
+        // })
+        function CreateJsonp(count){
+            jsonp({
+                url:'http://localhost:3000/users/test',
+                data:{a:1,b:2},
+                time:3000,
+                timeout:function(){                    
+                    if(count<3){
+                        console.log('超时，第'+(++count)+'次请求')
+                        CreateJsonp(count)
+                    }else{
+                        console.log("请求次数过多");
+                        return false;                        
+                    }
+                    
+                },
+                success:function(data){
+                    console.log(data);
+                },
+                fail:function(result){
+                    console.log(result.message)
+                }
+            })
+        }
+        CreateJsonp(1)
+    </script>
+</body>
+</html>
